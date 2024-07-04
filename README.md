@@ -1,4 +1,9 @@
-# SysVol-D4-D2 -Work in Progress
+# How to perform an authoritative synchronization of DFSR-replicated sysvol replication (like D4 for FRS)
+[Work in Progress]
+
+Refer the MSFT KB : https://learn.microsoft.com/en-us/troubleshoot/windows-server/group-policy/force-authoritative-non-authoritative-synchronization
+
+## Steps are given below for complete Automation
 
 ### SysVol State
 ```powershell
