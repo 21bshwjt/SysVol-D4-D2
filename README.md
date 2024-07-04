@@ -1,6 +1,16 @@
 # SysVol-D4-D2 -Work in Progress
 
+### SysVol State
 ```powershell
+<#
+State values are:
+0: Uninitialized
+1: Initialized
+2: Initial Sync
+3: Auto Recovery
+4: Normal
+5: In Error
+#>
 $servers = Get-ADGroupMember -Identity "Domain Controllers" | Select-Object -ExpandProperty Name 
 
 foreach ($server in $servers) {
