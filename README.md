@@ -62,7 +62,7 @@ Set-ADObject -Identity $dn -Replace @{
 ```
 ### 5. Modify the following DN and single attribute on all other domain controllers in that domain
 ```powershell
-domain = (Get-ADDomain).DistinguishedName 
+$domain = (Get-ADDomain).DistinguishedName 
  
 $DCs = Get-ADGroupMember -Identity "Domain Controllers" | Select-Object -ExpandProperty Name  
  
