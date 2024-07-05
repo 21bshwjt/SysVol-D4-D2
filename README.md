@@ -148,7 +148,13 @@ DFSRDIAG POLLAD
 
 ### 16. Return the DFSR service to its original Startup Type (Automatic) on all DCs. 
 ```powershell
-test
+$DCs = Get-ADGroupMember -Identity "Domain Controllers" | Select-Object -ExpandProperty Name 
+# Change Service startup type manual & Stop the DRSR Service  
+
+$DCs | Foreach-Object -Process { 
+    Invoke-Command -ComputerName $PSItem { Set-Service -Name 'DFSR' -StartupType Automatic -Verbose
+    } 
+} 
 ```
 
 ### 17. Verify SysVol State
