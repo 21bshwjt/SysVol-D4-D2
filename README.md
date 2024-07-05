@@ -6,13 +6,19 @@ Refer the MSFT KB : https://learn.microsoft.com/en-us/troubleshoot/windows-serve
 ### 1. Set the DFS Replication service Startup Type to Manual and stop the service on all domain controllers in the domain. 
 ```powershell
 $DCs = Get-ADGroupMember -Identity "Domain Controllers" | Select-Object -ExpandProperty Name 
-# Change Service startup type manual & Stop the DRSR Service  
 
-$DCs | Foreach-Object -Process { 
-    #Action that will run in Parallel. Reference the current object via $PSItem and bring in outside variables with $USING:varname 
-    Invoke-Command -ComputerName $PSItem { Set-Service -Name 'DFSR' -StartupType Manual -Verbose; Stop-Service -Name 'DFS Replication' -Force -Verbose 
-    } 
-} 
+# Change Service startup type to manual & stop the DFSR Service
+$DCs | ForEach-Object -Process { 
+    try {
+        # Action that will run in parallel. Reference the current object via $PSItem and bring in outside variables with $USING:varname
+        Invoke-Command -ComputerName $PSItem -ScriptBlock { 
+            Set-Service -Name 'DFSR' -StartupType Manual -Verbose
+            Stop-Service -Name 'DFS Replication' -Force -Verbose 
+        } -ErrorAction Stop
+    } catch {
+        Write-Error "Failed to modify DFSR service on $PSItem Error: $_"
+    }
+}
 ```
 
 ### 2. Verify DFSR Service Status from all Domain Controllers
