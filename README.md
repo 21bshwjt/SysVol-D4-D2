@@ -31,7 +31,7 @@ $GetoBj = Foreach ($DC in $DCs) {
 $GetoBj | Select-Object -Property DomainController, ServiceName, Status, StartType 
 ```
 
-### 3. In the ADSIEDIT.MSC tool, modify the following DN and two attributes on the domain controller you want to make authoritative (preferably the PDC Emulator, which is usually the most up-to-date for sysvol replication contents)
+### 3. In the ADSIEDIT.MSC tool, modify the following DN and two attributes on the domain controller you want to make authoritative (preferably the PDC Emulator, which is usually the most up-to-date for sysvol replication contents) - Manual
 ```powershell
 CN=SYSVOL Subscription,CN=Domain System Volume,CN=DFSR-LocalSettings,CN=<the server name>,OU=Domain Controllers,DC=<domain>
 
@@ -39,7 +39,7 @@ msDFSR-Enabled=FALSE
 msDFSR-options=1
 ```
 
-#### 3.1 Modify that using PowerShell
+### 4 Modify that using PowerShell - Automated
 ```powershell
 # Change PDC on ADSIEDIT 
 # Get the PDC Emulator for the domain 
@@ -59,7 +59,23 @@ Set-ADObject -Identity $dn -Replace @{
     "msDFSR-options" = 1 
 } -Verbose 
 ```
-
+### 5. Modify the following DN and single attribute on all other domain controllers in that domain
+```powershell
+domain = (Get-ADDomain).DistinguishedName 
+ 
+$DCs = Get-ADGroupMember -Identity "Domain Controllers" | Select-Object -ExpandProperty Name  
+ 
+foreach ($DC in $DCs) { 
+ 
+    # Construct the DN (Distinguished Name) 
+    $dn = "CN=SYSVOL Subscription,CN=Domain System Volume,CN=DFSR-LocalSettings,CN=$DC,OU=Domain Controllers,$domain" 
+ 
+    # Set the attributes 
+    Set-ADObject -Identity $dn -Replace @{ 
+        "msDFSR-Enabled" = $False 
+    } -Verbose 
+} 
+```
 
 
 ### Verify SysVol State
