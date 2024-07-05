@@ -76,7 +76,42 @@ foreach ($DC in $DCs) {
     } -Verbose 
 } 
 ```
+### 6. Force Active Directory replication throughout the domain and validate its success on all DCs.
+```powershell
+repadmin /syncall /A /e /P /d /q
+```
 
+### 7. Start the DFSR service on the PDC
+```powershell
+# Get the PDC Emulator for the domain 
+$PDCNameFull = (Get-ADDomain).PDCEmulator 
+ 
+# Split the full server name to get only the server name part 
+$PDCName = $PDCNameFull -split '\.' | Select-Object -First 1 
+Invoke-Command -ComputerName $PDCName  {Start-Service -Name 'DFS Replication' -Verbose} 
+```
+
+### 8. You'll see Event ID 4114 in the DFSR event log indicating sysvol replication is no longer being replicated. 
+
+### 9. Set msDFSR-Enabled=TRUE on PDC
+```powershell
+# Change PDC on ADSIEDIT 
+# Get the PDC Emulator for the domain 
+$PDCNameFull = (Get-ADDomain).PDCEmulator 
+ 
+# Split the full server name to get only the server name part 
+$PDCName = $PDCNameFull -split '\.' | Select-Object -First 1 
+ 
+$domain = (Get-ADDomain).DistinguishedName 
+ 
+# Construct the DN (Distinguished Name) 
+$dn = "CN=SYSVOL Subscription,CN=Domain System Volume,CN=DFSR-LocalSettings,CN=$PDCName,OU=Domain Controllers,$domain" 
+ 
+# Set the attributes 
+Set-ADObject -Identity $dn -Replace @{ 
+    "msDFSR-Enabled" = $True 
+} -Verbose 
+```
 
 ### Verify SysVol State
 ```powershell
