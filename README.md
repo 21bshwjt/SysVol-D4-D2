@@ -1,5 +1,5 @@
 # How to force authoritative and non-authoritative synchronization for DFSR-replicated sysvol replication
-[Work in Progress]
+
 
 Refer the MSFT KB : https://learn.microsoft.com/en-us/troubleshoot/windows-server/group-policy/force-authoritative-non-authoritative-synchronization
 
