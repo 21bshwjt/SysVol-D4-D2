@@ -3,9 +3,35 @@
 
 Refer the MSFT KB : https://learn.microsoft.com/en-us/troubleshoot/windows-server/group-policy/force-authoritative-non-authoritative-synchronization
 
-## Steps are given below for complete Automation
+### Set the DFS Replication service Startup Type to Manual and stop the service on all domain controllers in the domain. 
+```powershell
+$DCs = Get-ADGroupMember -Identity "Domain Controllers" | Select-Object -ExpandProperty Name 
+# Change Service startup type manual & Stop the DRSR Service  
 
-### SysVol State
+$DCs | Foreach-Object -Process { 
+    #Action that will run in Parallel. Reference the current object via $PSItem and bring in outside variables with $USING:varname 
+    Invoke-Command -ComputerName $PSItem { Set-Service -Name 'DFSR' -StartupType Manual -Verbose; Stop-Service -Name 'DFS Replication' -Force -Verbose 
+    } 
+} 
+```
+### Verify DFSR Service Status from all Domain Controllers
+```powershell
+# Get the DFSR Service Status 
+$GetoBj = Foreach ($DC in $DCs) { 
+    Invoke-Command -ComputerName $DC { 
+        [PSCustomObject]@{ 
+            DomainController = ($env:COMPUTERNAME).ToUpper() 
+            ServiceName      = (Get-Service -Name DFSR).Name 
+            Status           = (Get-Service -Name DFSR).Status 
+            StartType        = (Get-Service -Name DFSR).StartType 
+        }  
+    }  
+}  
+$GetoBj | Select-Object -Property DomainController, ServiceName, Status, StartType 
+```
+
+
+### Verify SysVol State
 ```powershell
 <#
 State values are:
