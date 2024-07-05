@@ -112,6 +112,14 @@ Set-ADObject -Identity $dn -Replace @{
     "msDFSR-Enabled" = $True 
 } -Verbose 
 ```
+### 10. Force Active Directory replication throughout the domain and validate its success on all DCs. 
+```powershell
+repadmin /syncall /A /e /P /d /q
+```
+### 11. Run the following command from an elevated command prompt on the same server that you set as authoritative:
+```powershell
+DFSRDIAG POLLAD 
+```
 
 ### Verify SysVol State
 ```powershell
