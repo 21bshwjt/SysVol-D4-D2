@@ -124,7 +124,14 @@ DFSRDIAG POLLAD
 
 ### 13. Start the DFSR service on the other non-authoritative DCs. You'll see Event ID 4114 in the DFSR event log indicating sysvol replication is no longer being replicated on each of them 
 ```powershell
-test
+$DCs = Get-ADGroupMember -Identity "Domain Controllers" | Select-Object -ExpandProperty Name 
+# Start the DRSR Service  
+
+$DCs | Foreach-Object -Process { 
+    #Action that will run in Parallel. Reference the current object via $PSItem and bring in outside variables with $USING:varname 
+    Invoke-Command -ComputerName $PSItem { Start-Service -Name 'DFS Replication' -Verbose 
+    } 
+} 
 ```
 
 ### 14 Modify the following DN and single attribute on all other domain controllers in that domain:
@@ -149,7 +156,7 @@ DFSRDIAG POLLAD
 ### 16. Return the DFSR service to its original Startup Type (Automatic) on all DCs. 
 ```powershell
 $DCs = Get-ADGroupMember -Identity "Domain Controllers" | Select-Object -ExpandProperty Name 
-# Change Service startup type manual & Stop the DRSR Service  
+# Change Service startup type Autometic
 
 $DCs | Foreach-Object -Process { 
     Invoke-Command -ComputerName $PSItem { Set-Service -Name 'DFSR' -StartupType Automatic -Verbose
