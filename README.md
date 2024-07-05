@@ -17,7 +17,8 @@ $DCs | Foreach-Object -Process {
 
 ### 2. Verify DFSR Service Status from all Domain Controllers
 ```powershell
-# Get the DFSR Service Status 
+# Get the DFSR Service Status
+$DCs = Get-ADGroupMember -Identity "Domain Controllers" | Select-Object -ExpandProperty Name 
 $GetoBj = Foreach ($DC in $DCs) { 
     Invoke-Command -ComputerName $DC { 
         [PSCustomObject]@{ 
