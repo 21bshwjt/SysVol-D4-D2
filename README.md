@@ -267,7 +267,7 @@ foreach ($Obj in $Objs){
     [PSCustomObject]@{ 
         DomainController = ($($Obj.DistinguishedName) -split ",")[3].Substring(3)
         "msDFSR-Enabled" = $($Obj.'msDFSR-Enabled')
-        "msDFSR_options" = $msDFSR_options
+        "msDFSR-options" = $msDFSR_options
     } 
 }
 ```
