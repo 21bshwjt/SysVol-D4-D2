@@ -186,12 +186,12 @@ foreach ($server in $servers) {
             $result # | Format-Table -AutoSize
         }
         else {
-            Write-Host "No DFSR information found on $server for 'SYSVOL share'."
+            Write-Warning "No DFSR information found on $server for 'SYSVOL share'." 
         }
     }
     catch {
-        Write-Host "Error querying $server : $_"
+        Write-Warning "Error querying $server : $_"
     }
-} 
+}
 
 ```
