@@ -120,8 +120,38 @@ repadmin /syncall /A /e /P /d /q
 ```powershell
 DFSRDIAG POLLAD 
 ```
+### 12. You'll see Event ID 4602 in the DFSR event log indicating sysvol replication has been initialized. That domain controller has now done a D4 of sysvol replication. 
 
-### Verify SysVol State
+### 13. Start the DFSR service on the other non-authoritative DCs. You'll see Event ID 4114 in the DFSR event log indicating sysvol replication is no longer being replicated on each of them 
+```powershell
+test
+```
+
+### 14 Modify the following DN and single attribute on all other domain controllers in that domain:
+```powershell
+$domain = (Get-ADDomain).DistinguishedName  
+$DCs = Get-ADGroupMember -Identity "Domain Controllers" | Select-Object -ExpandProperty Name  
+ 
+foreach ($DC in $DCs) {  
+ 
+    $dn = "CN=SYSVOL Subscription,CN=Domain System Volume,CN=DFSR-LocalSettings,CN=$DC,OU=Domain Controllers,$domain"  
+    Set-ADObject -Identity $dn -Replace @{  
+        "msDFSR-Enabled" = $True 
+ 
+    } -Verbose  
+}
+```
+### 15. Run the following command from an elevated command prompt on all non-authoritative DCs (that is, all but the formerly authoritative one): 
+```powershell
+DFSRDIAG POLLAD 
+```
+
+### 16. Return the DFSR service to its original Startup Type (Automatic) on all DCs. 
+```powershell
+test
+```
+
+### 17. Verify SysVol State
 ```powershell
 <#
 State values are:
