@@ -151,7 +151,22 @@ foreach ($DC in $DCs) {
 ```
 ### 15. Run the following command from an elevated command prompt on all non-authoritative DCs (that is, all but the formerly authoritative one): 
 ```powershell
-DFSRDIAG POLLAD 
+# Get members of the "Domain Controllers" group and store their names in $servers array
+$servers = Get-ADGroupMember -Identity "Domain Controllers" | Select-Object -ExpandProperty Name
+
+# Get the PDC Emulator for the domain 
+$PDCNameFull = (Get-ADDomain).PDCEmulator 
+ 
+# Split the full server name to get only the server name part 
+$PDCName = $PDCNameFull -split '\.' | Select-Object -First 1 
+
+# Remove PDC from the $servers array
+$servers = $servers | Where-Object { $_ -ne "$PDCName" }
+
+# Run DFSRDIAG POLLAD to all Non Auth DCs
+$servers | ForEach-Object -Process {
+    Invoke-Command -ComputerName $PSItem { DFSRDIAG POLLAD -Verbose }
+}
 ```
 
 ### 16. Return the DFSR service to its original Startup Type (Automatic) on all DCs. 
