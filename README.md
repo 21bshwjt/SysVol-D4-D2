@@ -174,6 +174,7 @@ State values are:
 3: Auto Recovery
 4: Normal
 5: In Error
+Expected value is '4'.
 #>
 $servers = Get-ADGroupMember -Identity "Domain Controllers" | Select-Object -ExpandProperty Name 
 
