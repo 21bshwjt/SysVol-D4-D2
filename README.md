@@ -10,8 +10,8 @@ ________________________________________________________________________________
 ___________________________________________________________________________________________________________________
 
 ### Instructions & prerequisites
-👉 - Clone the Repo : git clone https://github.com/21bshwjt/SysVol-D4-PowerShell.git<br/>
-👉 - Copy Scripts folder into the PDC<br/>
+- 👉 Clone the Repo : git clone https://github.com/21bshwjt/SysVol-D4-PowerShell.git<br/>
+- 👉 Copy Scripts folder into the PDC<br/>
 👉 - Domain Admins Privillages<br/>
 👉 - Run those Scripts in sequence<br/>
 👉 - Script numbering have been done based on readme file numbering hence 3, 8 & 12 are not there <br/>
