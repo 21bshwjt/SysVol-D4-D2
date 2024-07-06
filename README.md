@@ -294,6 +294,7 @@ ________________________________________________________________________________
 
 🍁 🍁 🍁</br>
 Biswajit Biswas a.k.a bshwjt</br>
-📧: <bshwjt@gmail.com> | [LinkedIn](https://www.linkedin.com/in/bshwjt/)</br>
+📧: <bshwjt@gmail.com></br>
+[LinkedIn](https://www.linkedin.com/in/bshwjt/)</br>
 💦 💦 💦
 ___________________________________________________________________________________________________________________
