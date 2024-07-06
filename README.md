@@ -8,9 +8,9 @@
 </h2>
 ___________________________________________________________________________________________________________________
 
-<h3 align="center">
-D4/D2 Automation is done by following this Microsoft [KB](https://learn.microsoft.com/en-us/troubleshoot/windows-server/group-policy/force-authoritative-non-authoritative-synchronization).
-</h3>
+
+### 👉 D4/D2 Automation is done by following this Microsoft [KB](https://learn.microsoft.com/en-us/troubleshoot/windows-server/group-policy/force-authoritative-non-authoritative-synchronization)
+
 ___________________________________________________________________________________________________________________
 
 ### Instructions & prerequisites
