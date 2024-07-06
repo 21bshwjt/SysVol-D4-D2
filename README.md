@@ -18,7 +18,7 @@ ________________________________________________________________________________
 - 👉 Make sure Active Directory Replication is completed across the domain before running the next script<br/>
 ___________________________________________________________________________________________________________________
 
-#### ❄️ 1. Set the DFS Replication service Startup Type to Manual and stop the service on all domain controllers in the domain. 
+#### 🌀 1. Set the DFS Replication service Startup Type to Manual and stop the service on all domain controllers in the domain. 
 ```powershell
 $DCs = Get-ADGroupMember -Identity "Domain Controllers" | Select-Object -ExpandProperty Name 
 
@@ -36,7 +36,7 @@ $DCs | ForEach-Object -Process {
 }
 ```
 
-#### 2. Verify DFSR Service Status from all Domain Controllers
+#### 🌀 2. Verify DFSR Service Status from all Domain Controllers
 ```powershell
 # Get the DFSR Service Status
 $DCs = Get-ADGroupMember -Identity "Domain Controllers" | Select-Object -ExpandProperty Name 
@@ -53,7 +53,7 @@ $GetoBj = Foreach ($DC in $DCs) {
 $GetoBj | Select-Object -Property DomainController, ServiceName, Status, StartType 
 ```
 
-#### 3. In the ADSIEDIT.MSC tool, modify the following DN and two attributes on the domain controller you want to make authoritative (preferably the PDC Emulator, which is usually the most up-to-date for sysvol replication contents) - Manual
+#### 🌀 3. In the ADSIEDIT.MSC tool, modify the following DN and two attributes on the domain controller you want to make authoritative (preferably the PDC Emulator, which is usually the most up-to-date for sysvol replication contents) - Manual
 ```powershell
 CN=SYSVOL Subscription,CN=Domain System Volume,CN=DFSR-LocalSettings,CN=<the server name>,OU=Domain Controllers,DC=<domain>
 
