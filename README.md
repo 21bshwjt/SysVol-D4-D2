@@ -23,7 +23,7 @@ $DCs | ForEach-Object -Process {
 }
 ```
 
-### 2. Verify DFSR Service Status from all Domain Controllers
+#### 2. Verify DFSR Service Status from all Domain Controllers
 ```powershell
 # Get the DFSR Service Status
 $DCs = Get-ADGroupMember -Identity "Domain Controllers" | Select-Object -ExpandProperty Name 
@@ -40,7 +40,7 @@ $GetoBj = Foreach ($DC in $DCs) {
 $GetoBj | Select-Object -Property DomainController, ServiceName, Status, StartType 
 ```
 
-### 3. In the ADSIEDIT.MSC tool, modify the following DN and two attributes on the domain controller you want to make authoritative (preferably the PDC Emulator, which is usually the most up-to-date for sysvol replication contents) - Manual
+#### 3. In the ADSIEDIT.MSC tool, modify the following DN and two attributes on the domain controller you want to make authoritative (preferably the PDC Emulator, which is usually the most up-to-date for sysvol replication contents) - Manual
 ```powershell
 CN=SYSVOL Subscription,CN=Domain System Volume,CN=DFSR-LocalSettings,CN=<the server name>,OU=Domain Controllers,DC=<domain>
 
@@ -48,7 +48,7 @@ msDFSR-Enabled=FALSE
 msDFSR-options=1
 ```
 
-### 4 Modify that using PowerShell - Automated
+#### 4 Modify that using PowerShell - Automated
 ```powershell
 # Change PDC on ADSIEDIT 
 # Get the PDC Emulator for the domain 
@@ -68,7 +68,7 @@ Set-ADObject -Identity $dn -Replace @{
     "msDFSR-options" = 1 
 } -Verbose 
 ```
-### 5. Modify the following DN and single attribute on all other domain controllers in that domain
+#### 5. Modify the following DN and single attribute on all other domain controllers in that domain
 ```powershell
 $domain = (Get-ADDomain).DistinguishedName 
  
@@ -85,12 +85,12 @@ foreach ($DC in $DCs) {
     } -Verbose 
 } 
 ```
-### 6. Force Active Directory replication throughout the domain and validate its success on all DCs.
+#### 6. Force Active Directory replication throughout the domain and validate its success on all DCs.
 ```powershell
 repadmin /syncall /A /e /P /d /q
 ```
 
-### 7. Start the DFSR service on the PDC
+#### 7. Start the DFSR service on the PDC
 ```powershell
 # Get the PDC Emulator for the domain 
 $PDCNameFull = (Get-ADDomain).PDCEmulator 
@@ -100,9 +100,9 @@ $PDCName = $PDCNameFull -split '\.' | Select-Object -First 1
 Invoke-Command -ComputerName $PDCName  {Start-Service -Name 'DFS Replication' -Verbose} 
 ```
 
-### 8. You'll see Event ID 4114 in the DFSR event log indicating sysvol replication is no longer being replicated. 
+#### 8. You'll see Event ID 4114 in the DFSR event log indicating sysvol replication is no longer being replicated. 
 
-### 9. Set msDFSR-Enabled=TRUE on PDC
+#### 9. Set msDFSR-Enabled=TRUE on PDC
 ```powershell
 # Change PDC on ADSIEDIT 
 # Get the PDC Emulator for the domain 
@@ -121,17 +121,17 @@ Set-ADObject -Identity $dn -Replace @{
     "msDFSR-Enabled" = $True 
 } -Verbose 
 ```
-### 10. Force Active Directory replication throughout the domain and validate its success on all DCs. 
+#### 10. Force Active Directory replication throughout the domain and validate its success on all DCs. 
 ```powershell
 repadmin /syncall /A /e /P /d /q
 ```
-### 11. Run the following command from an elevated command prompt on the same server that you set as authoritative:
+#### 11. Run the following command from an elevated command prompt on the same server that you set as authoritative:
 ```powershell
 DFSRDIAG POLLAD 
 ```
-### 12. You'll see Event ID 4602 in the DFSR event log indicating sysvol replication has been initialized. That domain controller has now done a D4 of sysvol replication. 
+#### 12. You'll see Event ID 4602 in the DFSR event log indicating sysvol replication has been initialized. That domain controller has now done a D4 of sysvol replication. 
 
-### 13. Start the DFSR service on the other non-authoritative DCs. You'll see Event ID 4114 in the DFSR event log indicating sysvol replication is no longer being replicated on each of them 
+#### 13. Start the DFSR service on the other non-authoritative DCs. You'll see Event ID 4114 in the DFSR event log indicating sysvol replication is no longer being replicated on each of them 
 ```powershell
 $DCs = Get-ADGroupMember -Identity "Domain Controllers" | Select-Object -ExpandProperty Name 
 # Start the DRSR Service  
@@ -143,7 +143,7 @@ $DCs | Foreach-Object -Process {
 } 
 ```
 
-### 14 Modify the following DN and single attribute on all other domain controllers in that domain:
+#### 14 Modify the following DN and single attribute on all other domain controllers in that domain:
 ```powershell
 $domain = (Get-ADDomain).DistinguishedName  
 $DCs = Get-ADGroupMember -Identity "Domain Controllers" | Select-Object -ExpandProperty Name  
@@ -157,7 +157,7 @@ foreach ($DC in $DCs) {
     } -Verbose  
 }
 ```
-### 15. Run the following command from an elevated command prompt on all non-authoritative DCs (that is, all but the formerly authoritative one): 
+#### 15. Run the following command from an elevated command prompt on all non-authoritative DCs (that is, all but the formerly authoritative one): 
 ```powershell
 # Get members of the "Domain Controllers" group and store their names in $servers array
 $servers = Get-ADGroupMember -Identity "Domain Controllers" | Select-Object -ExpandProperty Name
@@ -177,7 +177,7 @@ $servers | ForEach-Object -Process {
 }
 ```
 
-### 16. Return the DFSR service to its original Startup Type (Automatic) on all DCs. 
+#### 16. Return the DFSR service to its original Startup Type (Automatic) on all DCs. 
 ```powershell
 $DCs = Get-ADGroupMember -Identity "Domain Controllers" | Select-Object -ExpandProperty Name 
 # Change Service startup type Autometic
@@ -187,7 +187,7 @@ $DCs | Foreach-Object -Process {
     } 
 } 
 ```
-### 17. Verify DFSR Service Status from all Domain Controllers
+#### 17. Verify DFSR Service Status from all Domain Controllers
 ```powershell
 # Get the DFSR Service Status
 $DCs = Get-ADGroupMember -Identity "Domain Controllers" | Select-Object -ExpandProperty Name 
@@ -218,7 +218,7 @@ $GetoBj = foreach ($DC in $DCs) {
 $GetoBj | Select-Object -Property DomainController, ServiceName, Status, StartType
 ```
 
-### 18. Verify SysVol State
+#### 18. Verify SysVol State
 ```powershell
 <#
 State values are:
@@ -249,7 +249,7 @@ foreach ($server in $servers) {
 }
 
 ```
-### 19. Verify msDFSR-Enabled for msDFSR-options attribute values from all Domain Controllers (Optional)
+#### 19. Verify msDFSR-Enabled for msDFSR-options attribute values from all Domain Controllers (Optional)
 ```powershell
 $domain = (Get-ADDomain).DistinguishedName 
 
