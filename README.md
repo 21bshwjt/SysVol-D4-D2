@@ -288,5 +288,8 @@ foreach ($Obj in $Objs){
 ```
 ___________________________________________________________________________________________________________________
 
-Biswajit Biswas a.k.a bshwjt | Email: <bshwjt@gmail.com> | [LinkedIn](https://www.linkedin.com/in/bshwjt/)
+😊 😊 😊 
+Biswajit Biswas a.k.a bshwjt</br>
+Email: <bshwjt@gmail.com></br>
+[LinkedIn](https://www.linkedin.com/in/bshwjt/)
 ___________________________________________________________________________________________________________________
