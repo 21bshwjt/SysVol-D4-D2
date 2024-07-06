@@ -18,7 +18,7 @@ ________________________________________________________________________________
 - 👉 Make sure Active Directory Replication is completed across the domain before running the next script<br/>
 ___________________________________________________________________________________________________________________
 
-#### 1. Set the DFS Replication service Startup Type to Manual and stop the service on all domain controllers in the domain. 
+#### ❄️ 1. Set the DFS Replication service Startup Type to Manual and stop the service on all domain controllers in the domain. 
 ```powershell
 $DCs = Get-ADGroupMember -Identity "Domain Controllers" | Select-Object -ExpandProperty Name 
 
