@@ -1,6 +1,6 @@
 <h2 align="center">
   <img width="55" src="https://github.com/21bshwjt/SysVol-D4-PowerShell/blob/bf9cb4a2ecc57a5f5b4b0a411ddcc0ab53f3e607/Screenshots/dfsr.png?raw=true">
-  Force DFSR Sysvol Replication using PowerShell
+  <span style="color: #007bff;">Force DFSR Sysvol Replication using PowerShell</span>
   <img width="55" src="https://github.com/21bshwjt/SysVol-D4-PowerShell/blob/bf9cb4a2ecc57a5f5b4b0a411ddcc0ab53f3e607/Screenshots/dfsr.png?raw=true">
 </h2>
 
@@ -12,10 +12,10 @@ ________________________________________________________________________________
 ### Instructions & prerequisites
 - 👉 Clone the Repo : git clone https://github.com/21bshwjt/SysVol-D4-PowerShell.git<br/>
 - 👉 Copy Scripts folder into the PDC<br/>
-👉 - Domain Admins Privillages<br/>
-👉 - Run those Scripts in sequence<br/>
-👉 - Script numbering have been done based on readme file numbering hence 3, 8 & 12 are not there <br/>
-👉 - Make sure Active Directory Replication is completed across the domain before running the next script<br/>
+- 👉 Domain Admins Privillages<br/>
+- 👉 Run those Scripts in sequence<br/>
+- 👉 Script numbering have been done based on readme file numbering hence 3, 8 & 12 are not there <br/>
+- 👉 Make sure Active Directory Replication is completed across the domain before running the next script<br/>
 ___________________________________________________________________________________________________________________
 
 #### 1. Set the DFS Replication service Startup Type to Manual and stop the service on all domain controllers in the domain. 
