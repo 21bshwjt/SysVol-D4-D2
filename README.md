@@ -1,6 +1,9 @@
 # How to force authoritative and non-authoritative synchronization for DFSR-replicated sysvol replication
 
+___________________________________________________________________________________________________________________
+
 - D4/D2 Automation is done by following this Microsoft [KB](https://learn.microsoft.com/en-us/troubleshoot/windows-server/group-policy/force-authoritative-non-authoritative-synchronization).
+___________________________________________________________________________________________________________________
 
 ### Instructions & notes
 - Clone the Repo : git clone https://github.com/21bshwjt/SysVol-D4-PowerShell.git
@@ -8,7 +11,7 @@
 - Run those Scripts in sequence.
 - Script numbering have been done based on readme file numbering hence 3, 8 & 12 are not there.
 - Make sure Active Directory Replication is completed across the domain before running the next script.
-
+___________________________________________________________________________________________________________________
 
 #### 1. Set the DFS Replication service Startup Type to Manual and stop the service on all domain controllers in the domain. 
 ```powershell
@@ -278,5 +281,6 @@ foreach ($Obj in $Objs){
     } 
 }
 ```
+___________________________________________________________________________________________________________________
 
 Biswajit Biswas a.k.a bshwjt | Email: <bshwjt@gmail.com> | [LinkedIn](https://www.linkedin.com/in/bshwjt/)
