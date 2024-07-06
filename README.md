@@ -3,9 +3,7 @@
   <span style="color: #3368FF;">Force DFSR Sysvol Replication using PowerShell</span>
   <img width="55" src="https://github.com/21bshwjt/SysVol-D4-PowerShell/blob/bf9cb4a2ecc57a5f5b4b0a411ddcc0ab53f3e607/Screenshots/dfsr.png?raw=true">
 </h2>
-<h2 align="center">
-  ⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
-</h2>
+
 ___________________________________________________________________________________________________________________
 
 
