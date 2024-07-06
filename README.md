@@ -10,7 +10,7 @@ ________________________________________________________________________________
 ### Instructions & prerequisites
 - **Clone the Repo : git clone https://github.com/21bshwjt/SysVol-D4-PowerShell.git**
 - **Copy Scripts folder into the PDC.**
-- **__Domain Admins Privillages__**
+- **Domain Admins Privillages**
 - **Run those Scripts in sequence.**
 - **Script numbering have been done based on readme file numbering hence 3, 8 & 12 are not there.**
 - **Make sure Active Directory Replication is completed across the domain before running the next script.**
