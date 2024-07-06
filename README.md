@@ -10,12 +10,12 @@ ________________________________________________________________________________
 ___________________________________________________________________________________________________________________
 
 ### Instructions & prerequisites
-- **Clone the Repo : git clone https://github.com/21bshwjt/SysVol-D4-PowerShell.git**
-- **Copy Scripts folder into the PDC.**
-- **Domain Admins Privillages**
-- **Run those Scripts in sequence.**
-- **Script numbering have been done based on readme file numbering hence 3, 8 & 12 are not there.**
-- **Make sure Active Directory Replication is completed across the domain before running the next script.**
+👉 Clone the Repo : git clone https://github.com/21bshwjt/SysVol-D4-PowerShell.git<br/>
+👉 Copy Scripts folder into the PDC<br/>
+👉 Domain Admins Privillages<br/>
+👉 Run those Scripts in sequence<br/>
+👉 Script numbering have been done based on readme file numbering hence 3, 8 & 12 are not there <br/>
+👉 Make sure Active Directory Replication is completed across the domain before running the next script<br/>
 ___________________________________________________________________________________________________________________
 
 #### 1. Set the DFS Replication service Startup Type to Manual and stop the service on all domain controllers in the domain. 
