@@ -1,5 +1,7 @@
 <h2 align="center">
-How to force auth. and non-auth. sync of DFSR-replicated Sysvol Replication using PowerShell
+  <img width="55" src="https://github.com/21bshwjt/SysVol-D4-PowerShell/blob/5cc1393bd0323ee11e5a72578e3aa823f80e0e2f/Screenshots/dfsr.png?raw=true">
+  Force DFSR Sysvol Replication using PowerShell
+  <img width="55" src="https://github.com/21bshwjt/SysVol-D4-PowerShell/blob/5cc1393bd0323ee11e5a72578e3aa823f80e0e2f/Screenshots/dfsr.png?raw=true">
 </h2>
 
 ___________________________________________________________________________________________________________________
