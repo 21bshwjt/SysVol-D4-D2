@@ -1,9 +1,6 @@
-<h2 align="center">
+<h1 align="center">
 How to force auth. and non-auth. sync of DFSR-replicated Sysvol Replication
-</h2>
-
-
-
+</h1>
 
 ___________________________________________________________________________________________________________________
 
