@@ -19,7 +19,7 @@ ________________________________________________________________________________
 - 👉 Domain Admins Privillages<br/>
 - 👉 Run those Scripts in sequence<br/>
 - 👉 Script numbering have been done based on readme file numbering hence 3, 8 & 12 are not there <br/>
-- 👉 Make sure Active Directory Replication is completed across the domain before running the next script<br/>
+- 👉 Read the above mentioned KB<br/>
 ___________________________________________________________________________________________________________________
 
 #### 🌀 1. Set the DFS Replication service Startup Type to Manual and stop the service on all domain controllers in the domain. 
