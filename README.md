@@ -1,6 +1,6 @@
-<h1 align="center">
-How to force auth. and non-auth. sync of DFSR-replicated Sysvol Replication
-</h1>
+<h2 align="center">
+How to force auth. and non-auth. sync of DFSR-replicated Sysvol Replication using PowerShell
+</h2>
 
 ___________________________________________________________________________________________________________________
 
