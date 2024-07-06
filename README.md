@@ -1,5 +1,7 @@
 # How to force authoritative and non-authoritative synchronization for DFSR-replicated sysvol replication
 
+- D$/D2 Automation is done by following this [KB](https://learn.microsoft.com/en-us/troubleshoot/windows-server/group-policy/force-authoritative-non-authoritative-synchronization).
+
 
 Refer the MSFT KB : https://learn.microsoft.com/en-us/troubleshoot/windows-server/group-policy/force-authoritative-non-authoritative-synchronization
 
