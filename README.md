@@ -274,7 +274,11 @@ foreach ($server in $servers) {
 
 ```
 #### 🌀 19. Verify msDFSR-Enabled for msDFSR-options attribute values from all Domain Controllers (Optional)
+```diff
++ msDFSR-options value will be "0" from "1" automatically into PDC after some time.
+```
 ```powershell
+# msDFSR-options value will be "0" from "1" automatically into PDC after some time.
 $domain = (Get-ADDomain).DistinguishedName 
 
 $DCs = Get-ADGroupMember -Identity "Domain Controllers" | Select-Object -ExpandProperty Name 
