@@ -7,7 +7,7 @@
 ___________________________________________________________________________________________________________________
 
 
-### 👉 D4/D2 manual process has been given here -> Microsoft [KB](https://learn.microsoft.com/en-us/troubleshoot/windows-server/group-policy/force-authoritative-non-authoritative-synchronization)
+### 👉 D4/D2 Manual Process Has Been Given Here -> Microsoft [KB](https://learn.microsoft.com/en-us/troubleshoot/windows-server/group-policy/force-authoritative-non-authoritative-synchronization)
 ___________________________________________________________________________________________________________________
 
 ### Use-Cases
