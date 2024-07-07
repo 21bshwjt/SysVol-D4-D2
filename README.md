@@ -8,7 +8,14 @@ ________________________________________________________________________________
 
 
 ### 👉 D4/D2 Automation is done by following this Microsoft [KB](https://learn.microsoft.com/en-us/troubleshoot/windows-server/group-policy/force-authoritative-non-authoritative-synchronization)
+___________________________________________________________________________________________________________________
 
+### Use-Cases
+```diff
++ All optional components are used for security purpose & those are required in Production.
+- 1. Missing SysVol/Netlogon folders on Domain Controllers.
+- 2. GPO Inconsistencies.
+```
 ___________________________________________________________________________________________________________________
 
 ### Instructions & prerequisites
