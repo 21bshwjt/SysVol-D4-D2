@@ -239,7 +239,10 @@ $GetoBj = foreach ($DC in $DCs) {
 $GetoBj | Select-Object -Property DomainController, ServiceName, Status, StartType
 ```
 
-#### 🌀 18. Verify SysVol State
+#### 🌀 18. SysVol Health Checkups for all the Domain Controllers across the domain
+```diff
++ SysVol Health Checkups for all the Domain Controllers across the domain
+```
 ```powershell
 <#
 State values are:
