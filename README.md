@@ -12,7 +12,6 @@ ________________________________________________________________________________
 
 ### Use-Cases
 ```diff
-+ All optional components are used for security purpose & those are required in Production.
 - 1. Missing SysVol/Netlogon folders on Domain Controllers.
 - 2. GPO Inconsistencies.
 ```
