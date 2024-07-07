@@ -13,7 +13,7 @@ ________________________________________________________________________________
 ### Use-Cases
 ```diff
 - 1. Missing SysVol/Netlogon folders on Domain Controllers.
-- 2. GPO Inconsistencies.
+- 2. GPO Inconsistencies across the Domain Controllers.
 ```
 ___________________________________________________________________________________________________________________
 
