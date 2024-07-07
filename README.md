@@ -241,7 +241,7 @@ $GetoBj | Select-Object -Property DomainController, ServiceName, Status, StartTy
 
 #### 🌀 18. SysVol Health Checkups for all the Domain Controllers across the domain
 ```diff
-+ SysVol Health Checkups for all the Domain Controllers across the domain
++ SysVol Health Checkups for all the Domain Controllers across the domain, Expected "State" values are '4' after sometime.
 ```
 ```powershell
 <#
